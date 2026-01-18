@@ -7,6 +7,7 @@
     "prod": "prisma migrate deploy && prisma db seed && node dist/src/main",
     "lint": "eslint 'src/**/*.ts'",
     "format": "prettier --end-of-line=auto --write 'src/**/*.ts'",
+    "test": "jest",
     "test:system": "prisma migrate reset -f && nest start & wait-on http://localhost:8080/api/configs && newman run ./test/newman-system-tests.json"
   },
   "prisma": {
@@ -65,6 +66,7 @@
     "@types/cookie-parser": "^1.4.8",
     "@types/cron": "^2.4.0",
     "@types/express": "^5.0.1",
+    "@types/jest": "^30.0.0",
     "@types/mime-types": "^2.1.4",
     "@types/multer": "^1.4.12",
     "@types/node": "^22.14.1",
@@ -80,10 +82,12 @@
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
+    "jest": "^30.2.0",
     "newman": "^6.2.1",
     "prettier": "^3.5.3",
     "prisma": "^6.6.0",
     "source-map-support": "^0.5.21",
+    "ts-jest": "^29.4.6",
     "ts-loader": "^9.5.2",
     "tsconfig-paths": "4.2.0",
     "typescript": "^5.8.3",

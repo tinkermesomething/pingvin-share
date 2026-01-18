@@ -23,9 +23,9 @@
     {
       "id": "sec-003",
       "title": "Add file name sanitization",
-      "files": ["backend/src/file/file.service.ts"],
+      "files": ["backend/src/file/file.service.ts", "backend/src/file/file.service.spec.ts"],
       "issue": "Path traversal vulnerability in S3 storage via unsanitized file.name",
-      "fix": "Added sanitizeFileName() using path.basename(), null byte removal, length limit"
+      "fix": "Added sanitizeFileName() with cross-platform path handling (Unix + Windows), null byte removal, length limit. Includes 15 unit tests covering traversal attacks, null bytes, edge cases."
     },
     {
       "id": "sec-004",

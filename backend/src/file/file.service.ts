@@ -4,15 +4,14 @@ import { S3FileService } from "./s3.service";
 import { ConfigService } from "src/config/config.service";
 import { Readable } from "stream";
 import { PrismaService } from "../prisma/prisma.service";
-import * as path from "path";
 
 /**
  * Sanitizes a file name to prevent path traversal and other attacks.
- * - Strips directory components (../, /, \)
+ * - Strips directory components (../, /, \) - handles both Unix and Windows paths
  * - Removes null bytes
  * - Limits length to 255 characters
  */
-function sanitizeFileName(name: string): string {
+export function sanitizeFileName(name: string): string {
   if (!name || typeof name !== "string") {
     throw new BadRequestException("Invalid file name");
   }
@@ -20,19 +19,31 @@ function sanitizeFileName(name: string): string {
   // Remove null bytes
   let sanitized = name.replace(/\0/g, "");
 
-  // Use path.basename to strip directory components
-  sanitized = path.basename(sanitized);
+  // Normalize backslashes to forward slashes for consistent handling
+  // This ensures Windows-style paths are handled correctly on Linux
+  sanitized = sanitized.replace(/\\/g, "/");
 
-  // Reject if empty after sanitization (was just path components)
+  // Extract just the filename, stripping all directory components
+  const lastSlash = sanitized.lastIndexOf("/");
+  if (lastSlash !== -1) {
+    sanitized = sanitized.substring(lastSlash + 1);
+  }
+
+  // Reject if empty or just dots (current/parent directory references)
   if (!sanitized || sanitized === "." || sanitized === "..") {
     throw new BadRequestException("Invalid file name");
   }
 
-  // Limit length
+  // Limit length while preserving extension
   if (sanitized.length > 255) {
-    const ext = path.extname(sanitized);
-    const base = path.basename(sanitized, ext);
-    sanitized = base.substring(0, 255 - ext.length) + ext;
+    const lastDot = sanitized.lastIndexOf(".");
+    if (lastDot > 0) {
+      const ext = sanitized.substring(lastDot);
+      const base = sanitized.substring(0, lastDot);
+      sanitized = base.substring(0, 255 - ext.length) + ext;
+    } else {
+      sanitized = sanitized.substring(0, 255);
+    }
   }
 
   return sanitized;
