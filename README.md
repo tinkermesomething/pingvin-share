@@ -1,14 +1,6 @@
-> ## ⚠️ Project Archived
->
-> After much consideration, I've chosen to focus my limited time and energy on my other project, [Pocket ID](https://github.com/pocket-id/pocket-id). As a solo developer, I've found it difficult to actively maintain multiple open source projects with the care and attention they deserve.
->
-> If you're interested in continuing this work through a fork, I'd be happy to link to it here in the README.
->
-> Thanks to all the contributors and users who have supported Pingvin Share over the years :)
-
 # <div align="center"><img  src="https://user-images.githubusercontent.com/58886915/166198400-c2134044-1198-4647-a8b6-da9c4a204c68.svg" width="40"/> </br>Pingvin Share</div>
 
-[![](https://dcbadge.limes.pink/api/server/wHRQ9nFRcK)](https://discord.gg/wHRQ9nFRcK) [![](https://img.shields.io/badge/Crowdin-2E3340.svg?style=for-the-badge&logo=Crowdin&logoColor=white)](https://crowdin.com/project/pingvin-share) [![](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/sponsors/stonith404)
+> **Note:** This is an actively maintained fork of [stonith404/pingvin-share](https://github.com/stonith404/pingvin-share), which was archived by the original author. This fork includes security updates, dependency upgrades, and ongoing maintenance.
 
 ---
 

@@ -1,6 +1,6 @@
 services:
   pingvin-share:
-    image: stonith404/pingvin-share # or ghcr.io/stonith404/pingvin-share
+    image: ghcr.io/tinkermesomething/pingvin-share # or tinkermesomething/pingvin-share on Docker Hub
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -11,5 +11,5 @@ services:
       - "./data/images:/opt/app/frontend/public/img"
   #      - "./config.yaml:/opt/app/config.yaml" # Add this line, if you want to configure pingvin-share via config file and not via UI
 
-  # To add ClamAV, to scan your shares for malicious files, 
+  # To add ClamAV, to scan your shares for malicious files,
   # see https://stonith404.github.io/pingvin-share/setup/integrations/#clamav-docker-only
