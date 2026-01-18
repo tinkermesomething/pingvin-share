@@ -1,9 +1,42 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { LocalFileService } from "./local.service";
 import { S3FileService } from "./s3.service";
 import { ConfigService } from "src/config/config.service";
 import { Readable } from "stream";
 import { PrismaService } from "../prisma/prisma.service";
+import * as path from "path";
+
+/**
+ * Sanitizes a file name to prevent path traversal and other attacks.
+ * - Strips directory components (../, /, \)
+ * - Removes null bytes
+ * - Limits length to 255 characters
+ */
+function sanitizeFileName(name: string): string {
+  if (!name || typeof name !== "string") {
+    throw new BadRequestException("Invalid file name");
+  }
+
+  // Remove null bytes
+  let sanitized = name.replace(/\0/g, "");
+
+  // Use path.basename to strip directory components
+  sanitized = path.basename(sanitized);
+
+  // Reject if empty after sanitization (was just path components)
+  if (!sanitized || sanitized === "." || sanitized === "..") {
+    throw new BadRequestException("Invalid file name");
+  }
+
+  // Limit length
+  if (sanitized.length > 255) {
+    const ext = path.extname(sanitized);
+    const base = path.basename(sanitized, ext);
+    sanitized = base.substring(0, 255 - ext.length) + ext;
+  }
+
+  return sanitized;
+}
 
 @Injectable()
 export class FileService {
@@ -38,7 +71,11 @@ export class FileService {
     shareId: string,
   ) {
     const storageService = this.getStorageService();
-    return storageService.create(data, chunk, file, shareId);
+    const sanitizedFile = {
+      ...file,
+      name: sanitizeFileName(file.name),
+    };
+    return storageService.create(data, chunk, sanitizedFile, shareId);
   }
 
   async get(shareId: string, fileId: string): Promise<File> {

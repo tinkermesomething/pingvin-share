@@ -1,0 +1,48 @@
+{
+  "project": "pingvin-share",
+  "current_version": {
+    "status": "in_progress",
+    "date": "2025-01-18",
+    "summary": "Security hardening of archived project"
+  },
+  "completed_tasks": [
+    {
+      "id": "sec-001",
+      "title": "Fix frontend CVEs (Next.js, axios, tar, form-data)",
+      "files": ["frontend/package.json", "frontend/package-lock.json"],
+      "issue": "Multiple high/critical CVEs in frontend deps",
+      "fix": "npm audit fix - upgraded Next.js 14.2.26->14.2.35, axios->1.12.0, tar->7.6.0, form-data->4.0.4"
+    },
+    {
+      "id": "sec-002",
+      "title": "Fix backend CVEs (nodemailer, body-parser, axios, jws)",
+      "files": ["backend/package.json", "backend/package-lock.json"],
+      "issue": "Multiple CVEs including nodemailer DoS/injection",
+      "fix": "npm audit fix + nodemailer 6.10.1->7.0.12"
+    },
+    {
+      "id": "sec-003",
+      "title": "Add file name sanitization",
+      "files": ["backend/src/file/file.service.ts"],
+      "issue": "Path traversal vulnerability in S3 storage via unsanitized file.name",
+      "fix": "Added sanitizeFileName() using path.basename(), null byte removal, length limit"
+    },
+    {
+      "id": "sec-004",
+      "title": "Harden OAuth state cookie",
+      "files": ["backend/src/oauth/oauth.controller.ts"],
+      "issue": "OAuth state cookie missing httpOnly flag, vulnerable to XSS theft",
+      "fix": "Added httpOnly: true, secure: isSecure, maxAge: 10 minutes"
+    }
+  ],
+  "deferred_to_next_version": [
+    "Upgrade eslint config to flat config format (ESLint 9 compat)",
+    "Add Helmet security headers",
+    "Implement CORS policy",
+    "Encrypt TOTP secrets at rest",
+    "Add account lockout after failed logins",
+    "Upgrade Mantine 6.x to 7.x",
+    "Pin Docker base images to digests",
+    "Add container resource limits"
+  ]
+}
