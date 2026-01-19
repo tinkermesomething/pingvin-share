@@ -1,5 +1,5 @@
 {
-  "name": "pingvin-share-backend",
+  "name": "tinkerme-share-backend",
   "version": "1.14.0",
   "scripts": {
     "build": "nest build",

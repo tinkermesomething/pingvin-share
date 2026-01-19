@@ -1,5 +1,5 @@
 services:
-  pingvin-share:
+  tinkerme-share:
     build: .
     restart: unless-stopped
     ports:

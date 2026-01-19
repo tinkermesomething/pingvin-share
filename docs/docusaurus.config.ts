@@ -3,15 +3,15 @@ import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
-  title: "Pingvin Share",
+  title: "Tinkerme Share",
   tagline:
-    "Pingvin Share is self-hosted file sharing platform and an alternative for WeTransfer.",
-  favicon: "img/pingvinshare.svg",
+    "Tinkerme Share is a self-hosted file sharing platform and an alternative for WeTransfer. Fork of the original Pingvin Share by stonith404.",
+  favicon: "img/tinkermeshare.svg",
 
-  url: "https://stonith404.github.io",
-  baseUrl: "/pingvin-share/",
-  organizationName: "stonith404",
-  projectName: "pingvin-share",
+  url: "https://tinkermesomething.github.io",
+  baseUrl: "/tinkerme-share/",
+  organizationName: "tinkermesomething",
+  projectName: "tinkerme-share",
 
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
@@ -28,7 +28,7 @@ const config: Config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://github.com/stonith404/pingvin-share/edit/main/docs",
+          editUrl: "https://github.com/tinkermesomething/tinkerme-share/edit/main/docs",
         },
         blog: false,
       } satisfies Preset.Options,
@@ -36,19 +36,19 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: "img/pingvinshare.svg",
+    image: "img/tinkermeshare.svg",
     colorMode: {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: "Pingvin Share",
+      title: "Tinkerme Share",
       logo: {
-        alt: "Pingvin Share Logo",
-        src: "img/pingvinshare.svg",
+        alt: "Tinkerme Share Logo",
+        src: "img/tinkermeshare.svg",
       },
       items: [
         {
-          href: "https://github.com/stonith404/pingvin-share",
+          href: "https://github.com/tinkermesomething/tinkerme-share",
           label: "GitHub",
           position: "right",
         },
