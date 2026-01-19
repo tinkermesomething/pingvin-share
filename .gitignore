@@ -48,3 +48,11 @@ yarn-error.log*
 
 # Jetbrains specific (webstorm)
 .idea/**/**
+
+# Local dev files
+.work-tracker.json
+REBRAND-PLAN.md
+.claude/
+
+# Crowdin (original project's translation service)
+crowdin.yml
