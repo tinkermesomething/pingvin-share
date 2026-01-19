@@ -31,11 +31,20 @@ const Footer = () => {
           Powered by{" "}
           <Anchor
             size="xs"
+            href="https://github.com/tinkermesomething/tinkerme-share"
+            target="_blank"
+          >
+            Tinkerme Share
+          </Anchor>
+          {" (fork of "}
+          <Anchor
+            size="xs"
             href="https://github.com/stonith404/pingvin-share"
             target="_blank"
           >
             Pingvin Share
           </Anchor>
+          {")"}
         </Text>
         <div>
           {config.get("legal.enabled") && (

@@ -1,10 +1,10 @@
 {
-  "project": "pingvin-share",
+  "project": "tinkerme-share",
   "current_version": {
-    "version": "1.14.0",
-    "status": "released",
-    "date": "2025-01-18",
-    "summary": "Security hardening release - CVE fixes, file sanitization, OAuth hardening"
+    "version": "1.15.0",
+    "status": "in_progress",
+    "date": "2026-01-19",
+    "summary": "Rebrand from pingvin-share to tinkerme-share"
   },
   "completed_tasks": [
     {
@@ -54,18 +54,41 @@
       "title": "Detach fork from archived upstream",
       "issue": "Fork linked to archived repo, no issues/wiki available",
       "fix": "Requested GitHub support to detach - now standalone repo"
-    }
-  ],
-  "pending_tasks": [
+    },
     {
       "id": "rebrand-001",
       "title": "Rebrand pingvin-share to tinkerme-share",
-      "status": "planned",
-      "plan_file": "REBRAND-PLAN.md",
-      "summary": "Full rebrand including package names, Docker images, docs, translations. See REBRAND-PLAN.md for detailed checklist.",
-      "blockers": ["Requires careful manual review - not safe for blind sed replacement"]
+      "files": [
+        "package.json",
+        "backend/package.json",
+        "frontend/package.json",
+        "docs/package.json",
+        "docker-compose.yml",
+        "docker-compose.local.yml",
+        "backend/src/constants.ts",
+        "backend/prisma/seed/config.seed.ts",
+        "backend/prisma/.env",
+        "backend/src/main.ts",
+        "config.example.yaml",
+        "docs/docusaurus.config.ts",
+        "README.md",
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        "MIGRATING.md",
+        "frontend/src/pages/admin/intro.tsx",
+        "frontend/src/components/footer/Footer.tsx",
+        "frontend/src/services/config.service.ts",
+        "frontend/src/pages/index.tsx",
+        "frontend/public/manifest.json",
+        "scripts/docker/create-user.sh",
+        "docs/docs/**/*.md",
+        "frontend/src/i18n/translations/*.ts"
+      ],
+      "issue": "Rebrand fork to differentiate from archived original",
+      "fix": "Updated all package names, docker images, URLs, branding. Preserved attribution to stonith404. Created MIGRATING.md for existing users."
     }
   ],
+  "pending_tasks": [],
   "deferred_to_future": [
     "Upgrade eslint config to flat config format (ESLint 9 compat)",
     "Add Helmet security headers (low priority - behind reverse proxy)",
@@ -79,9 +102,9 @@
   ],
   "notes": {
     "docker_images": {
-      "ghcr": "ghcr.io/tinkermesomething/pingvin-share:v1.14.0",
-      "dockerhub": "tinkermesomething/pingvin-share:v1.14.0"
+      "ghcr": "ghcr.io/tinkermesomething/tinkerme-share:v1.15.0",
+      "dockerhub": "tinkermesomething/tinkerme-share:v1.15.0"
     },
-    "next_session": "Continue with REBRAND-PLAN.md - start Phase 2.1 safe renames"
+    "next_session": "Test build, create release, update Docker images"
   }
 }
